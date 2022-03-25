@@ -30,7 +30,6 @@ void main(){
 	
 	printf("Write a integer positive number and press Enter:\n");
 	scanf("%d", &number);
-	printf("\nThe prime factors of %d are:\n", number);
 	printFactors(number);
 	
 	return;
