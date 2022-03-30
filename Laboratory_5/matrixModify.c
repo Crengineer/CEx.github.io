@@ -55,21 +55,22 @@ int **initializeMatrix(int dim){
 
 // Function that increments the values after the element chosen
 int ** increaseValues(int **m, int * ind, int dim){
-	int indX = ind[0], indY = ind[1]+1, i=0, j=0, ref;
+	int indX = ind[0], indY = ind[1], i=0, j=0, ref, count=0;
 	
-	// This cycle put every cell after the position [indX,indY] incremented by 1
+	// This cycle put every cell after the position [indX,indY] from 0 and incremented by 1 at every cycle
 	for(i=indX; i<dim; i++){
 		for(j=indY+1;j<dim;j++){
-			m[i][j] ++;
+			m[i][j] = count;
+			count++;
 			if((i==dim-1) && (j==dim-1)){
-				ref = m[i][j];            //ref is set as the last element of the matrix
+				ref = m[indX][indY];            //ref is set as the chosen element
 			}
 		}
 	}
 	// This cycle put every cell from the first to the one [indX,indY] incremented by the last element of the matrix
-	for(i=0; i<dim; i++){
-		for(j=0;j<dim;j++){
-			if(m[i][j] < m[indX][indY-1]){
+	for(i=0; i<indX; i++){
+		for(j=0;j<indY;j++){
+			if(m[i][j] < m[indX][indY]){
 				m[i][j]+= ref; 
 			}
 			
@@ -80,7 +81,7 @@ int ** increaseValues(int **m, int * ind, int dim){
 	for(i=0; i<dim; i++){
 		for(j=0;j<dim;j++){
 			if(i==indX || j == indY){
-				m[i][j] = m[indX][indY-1];
+				m[i][j] = m[indX][indY];
 			}
 		}
 	}
@@ -106,7 +107,7 @@ void printMatrix(int ** matrix, int dim){
 	int i, j, num_rows = dim, num_cols = dim;
 	printf("\n     ");
 	for(i=0;i<num_rows; i++){
-		printf("%d   ", i);
+		printf("%d    ", i);
 	}
 	printf("\n");
 	for(i=0;i<num_rows; i++){
