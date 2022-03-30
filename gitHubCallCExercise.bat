@@ -3,6 +3,7 @@ git init
 git status
 git add .
 git commit -m "first commit"
+git remote add origin  https://github.com/Crengineer/CEx.github.io.git
+git remote -v
 git branch -M main
-git remote add origin https://github.com/Crengineer/CEx.github.io.git
 git push -u origin main
